@@ -1,11 +1,13 @@
 const MAX = 1010;
 const radVertex = 20;
+let x,y,range;
+let lastVertex = 0;
 let G = Array();
 let coordsVert = Array();
 for(let i = 0;i < MAX;i++) G[i] = Array();
+let imgAntenna = new Image();
+imgAntenna.src = '../antenna.png';
 
-let lastVertex = 0;
-let x,y,range;
 
 //--------------------------- INÍCIO das Funções de Renderização do Grafo ---------------------------------
 let canvas = document.getElementById('graphStage');
@@ -16,7 +18,7 @@ let width = window.screen.availWidth;
 
 canvas.width = width - 200;
 canvas.height = height - 100; 
-let wrapper = document.getElementById("graphStage").addEventListener('click', function(e){
+document.getElementById("graphStage").addEventListener('click', function(e){
  	x = e.pageX;
 	y = e.pageY;
 
@@ -32,14 +34,10 @@ function makeVertex(){
 	range = parseInt(document.getElementById('iRange').value);
 
 	//Vértice 
-	ctx.beginPath();	
-	ctx.arc(x, y, radVertex, 0, Math.PI*2, true);
-	ctx.strokeStyle = 'rgb(50,205,50)';
-	ctx.lineWidth = 3;
-	ctx.fill();
-	ctx.stroke();
+	ctx.beginPath();
+	ctx.drawImage(imgAntenna,x-50,y-50);
 	ctx.closePath();
-
+	
 	//Raio de alcance
 	ctx.beginPath();	
 	ctx.arc(x ,y ,range ,0 ,Math.PI*2 ,true);
