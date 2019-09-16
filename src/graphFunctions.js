@@ -69,6 +69,34 @@ function updateEdges() {
   }
 }
 
+function drawMstLines(mst) {
+  let edgesCoordinates = [];
+  mst.forEach(edge => {
+    let x0 = coordsVert[edge.u].x;
+    let y0 = coordsVert[edge.u].y;
+    let x1 = coordsVert[edge.w].x;
+    let y1 = coordsVert[edge.w].y;
+
+    let edgeCoordinate = {
+      beg: { x: x0, y: y0 },
+      end: { x: x1, y: y1 },
+      distance: edge.d
+    };
+    drawMstLine(edgeCoordinate);
+  });
+}
+
+function drawMstLine(coordinate) {
+  const { beg, end, distance } = coordinate;
+  ctx.beginPath();
+  ctx.strokeStyle = "rgba(41, 241, 195, 1)";
+  ctx.lineWidth = 4;
+  ctx.moveTo(beg.x, beg.y);
+  ctx.lineTo(end.x, end.y);
+  ctx.stroke();
+  ctx.closePath();
+}
+
 function makeEdge(s, d, { x, xo }, { y, yo }, distance) {
   G[s].push({ u: d, d: distance });
   G[d].push({ u: s, d: distance });
@@ -125,7 +153,7 @@ function openResultsPage() {
   //window.location.href = "_results-page.html";
   const edgeListGraph = getEdgeList(G, lastVertex);
   const mst = kruskal(edgeListGraph, lastVertex);
-  console.log(JSON.stringify(mst));
+  drawMstLines(mst);
 }
 
 //Identificação dos Componentes do Grafo
@@ -152,7 +180,7 @@ function getEdgeList(adjacencyListGraph, lastVertex) {
 
 function kruskal(graph, size) {
   const sortedGraph = graph.sort((edgeA, edgeB) => edgeA.d > edgeB.d);
-  const edgeSetLength = sorteGraph.length;
+  const edgeSetLength = sortedGraph.length;
   const unionFind = new UnionFind(size);
   const mst = [];
   for (let i = 0; i < edgeSetLength; i = i + 1) {
@@ -182,7 +210,7 @@ function UnionFind(graphSize) {
 // Determina em qual componente u se encontra
 UnionFind.prototype.find = function find(u) {
   while (this.parent[u] !== u) {
-    u = parent[u];
+    u = this.parent[u];
   }
   return u;
 };
@@ -191,7 +219,6 @@ UnionFind.prototype.find = function find(u) {
 UnionFind.prototype.join = function join(a, b) {
   a = this.find(a);
   b = this.find(b);
-  console.log(a, b);
 
   if (this.weight[a] < this.weight[b]) {
     this.parent[a] = b;
