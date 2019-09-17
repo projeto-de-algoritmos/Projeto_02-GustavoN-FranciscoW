@@ -4,7 +4,7 @@
 
 **Alunos:**	
 
-Francisco Wallacy Coutinho Braz - 15/0059320
+Francisco Wallacy Coutinho Braz - 15/0059329
 
 Gustavo Nogueira Rodrigues - 17/0144259
             		
