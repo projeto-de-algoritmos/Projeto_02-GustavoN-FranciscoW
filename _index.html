@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Home</title>
+	<meta charset="utf-8">
+	<!-- Bootstrap início -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- Bootstrap fim -->
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<p style="text-align: left; font-size: 20px; font-family: 'Georgia'; margin: 0px; padding-left: 10px;">
+		Clique sobre a área cinza para criar um novo vértice.
+		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+		Custo da MST:<span id="msgcost"></span>
+	</p> 
+	<canvas id="graphStage"></canvas>
+
+	<!-- Modal -->
+	<div class="modal fade" id="modalRad" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div id="modalHeader" class="modal-header">
+	        <h5 class="modal-title" id="modalLabel">Antena</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div id='modalBody' class="modal-body">
+	        Defina o raio de cobertura da antena.
+	      	<center>
+	      		<div style="width: 250px;">
+	      	 		<input id="iRange" class="custom-range"
+	      			type="range" name="range" min="0" max="400" 
+	      			step="10" onchange="getRangeInput()"/>
+	      		</div>
+	      	</center>
+	      	Raio:<span id="idRad">200</span>px
+	      </div>
+	      <div class="modal-footer">	  
+	        <button type="button" id="btnCorfim" 
+	        		onclick="makeVertex()" class="btn btn-primary" data-dismiss="modal">Confirmar
+	        </button>
+	      </div>
+	    </div>	
+	  </div>
+	</div>
+	<!-- FIM Modal -->
+	<button class="btnPg" style="margin-top: 10%; margin-right: 3%;" onclick="location.reload()">Limpar</button>
+	<button class="btnPg" style="margin-top: -5%; margin-right: 2%;" onclick="generateMST()">Gerar MST</button>
+	<script src="graphFunctions.js"></script>
+</body>
+</html
